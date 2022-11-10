@@ -15,26 +15,30 @@ function FileUploader(props) {
 
     function handleChange(e) {
         let file = e.target.files[0]
-        setInfoFile(file) ;
-        console.log(infoFile);
+        setInfoFile(() => {
+            console.log(file);
 
-        setFileType(infoFile.name.slice(infoFile.name.lastIndexOf('.') + 1) === "csv");
+            setFileType(file.name.slice(file.name.lastIndexOf('.') + 1) === "csv");
 
-        if (fileType) {
-            let reader = new FileReader();
-            reader.readAsText(infoFile);
-            
-            reader.onload = function() {
-                setFileContent(reader.result);
-            };
-        } else {
-            setFileContent(URL.createObjectURL(infoFile));
-        }
+            if (fileType) {
+                let reader = new FileReader();
+                reader.readAsText(infoFile);
+                
+                reader.onload = function() {
+                    setFileContent(reader.result);
+                };
+            } else {
+                setFileContent(URL.createObjectURL(file));
+            }
+
+            return file;
+        });
+        
         
     }
 
     function handleClick(e) {
-        axios.postForm('http://localhost:8080/info', {
+        axios.postForm('/info', {
             'file': infoFile
         })
         .then(res => console.log("success"))
