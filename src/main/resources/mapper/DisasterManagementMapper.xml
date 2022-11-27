@@ -22,6 +22,67 @@
     from disaster_management
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectSelectiveByPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from disaster_management
+    where 1 = 1
+    <if test="disasterManagement.id != null">
+      and id = #{disasterManagement.id}
+    </if>
+    <if test="disasterManagement.disasterCode != null">
+      and disaster_code = #{disasterManagement.disasterCode}
+    </if>
+    <if test="disasterManagement.location != null">
+      and location = #{disasterManagement.location}
+    </if>
+    <if test="disasterManagement.carrier != null">
+      and carrier = #{disasterManagement.carrier}
+    </if>
+    <if test="disasterManagement.origin != null">
+      and origin = #{disasterManagement.origin}
+    </if>
+    <if test="disasterManagement.disasterDate != null">
+      and disaster_date = #{disasterManagement.disasterDate}
+    </if>
+    <if test="disasterManagement.category != null">
+      and category = #{disasterManagement.category}
+    </if>
+    <if test="disasterManagement.label != null">
+      and label = #{disasterManagement.label}
+    </if>
+    limit #{offset}, #{limit};
+
+  </select>
+  <select id="selectSelectiveByPageCount" resultType="java.lang.Integer">
+    select count(*)
+    from disaster_management
+    where 1 = 1
+    <if test="disasterManagement.id != null">
+      and id = #{disasterManagement.id}
+    </if>
+    <if test="disasterManagement.disasterCode != null">
+      and disaster_code = #{disasterManagement.disasterCode}
+    </if>
+    <if test="disasterManagement.location != null">
+      and location = #{disasterManagement.location}
+    </if>
+    <if test="disasterManagement.carrier != null">
+      and carrier = #{disasterManagement.carrier}
+    </if>
+    <if test="disasterManagement.origin != null">
+      and origin = #{disasterManagement.origin}
+    </if>
+    <if test="disasterManagement.disasterDate != null">
+      and disaster_date = #{disasterManagement.disasterDate}
+    </if>
+    <if test="disasterManagement.category != null">
+      and category = #{disasterManagement.category}
+    </if>
+    <if test="disasterManagement.label != null">
+      and label = #{disasterManagement.label}
+    </if>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from disaster_management
     where id = #{id,jdbcType=INTEGER}
@@ -96,6 +157,16 @@
         #{desc,jdbcType=VARCHAR},
       </if>
     </trim>
+  </insert>
+  <insert id="insertList" parameterType="com.bupt.disaster_encode.domain.DisasterManagement">
+    insert into disaster_management (disaster_code, location, carrier, origin, disaster_date, category, label, desc)
+    values
+        <foreach collection="list" separator="," item="item">
+          (#{item.disasterCode,jdbcType=VARCHAR}, #{item.location,jdbcType=VARCHAR},
+          #{citem.arrier,jdbcType=VARCHAR}, #{item.origin,jdbcType=VARCHAR}, #{item.disasterDate,jdbcType=TIMESTAMP},
+          #{item.category,jdbcType=VARCHAR}, #{item.label,jdbcType=VARCHAR}, #{item.desc,jdbcType=VARCHAR}
+          )
+        </foreach>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.bupt.disaster_encode.domain.DisasterManagement">
     update disaster_management

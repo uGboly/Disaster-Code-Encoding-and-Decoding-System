@@ -1,8 +1,22 @@
 package com.bupt.disaster_encode.domain;
 
+import com.bupt.disaster_encode.domain.Enum.Carrier;
+import com.bupt.disaster_encode.domain.Enum.Category;
+import com.bupt.disaster_encode.domain.Enum.Label;
+import com.bupt.disaster_encode.domain.Enum.Origin;
+import com.bupt.disaster_encode.dto.DisasterManagementPageVo;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class DisasterManagement implements Serializable {
     private Integer id;
 
@@ -24,75 +38,38 @@ public class DisasterManagement implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getDisasterCode() {
-        return disasterCode;
-    }
-
-    public void setDisasterCode(String disasterCode) {
-        this.disasterCode = disasterCode == null ? null : disasterCode.trim();
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location == null ? null : location.trim();
-    }
-
-    public String getCarrier() {
-        return carrier;
-    }
-
-    public void setCarrier(String carrier) {
-        this.carrier = carrier == null ? null : carrier.trim();
-    }
-
-    public String getOrigin() {
-        return origin;
-    }
-
-    public void setOrigin(String origin) {
-        this.origin = origin == null ? null : origin.trim();
-    }
-
-    public Date getDisasterDate() {
-        return disasterDate;
-    }
-
-    public void setDisasterDate(Date disasterDate) {
+    public DisasterManagement(String disasterCode, Region region, Date disasterDate, Origin origin, Carrier carrier, Category category, Label label) {
+        this.disasterCode = disasterCode;
+        this.location = region.toString();
+        this.carrier = carrier.FORM;
+        this.origin = origin.subClassName;
         this.disasterDate = disasterDate;
+        this.category = category.subClassName;
+        this.label = label.labelName;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category == null ? null : category.trim();
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label == null ? null : label.trim();
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+    public DisasterManagement(DisasterManagementPageVo vo) throws ParseException {
+        if (vo.getId() != null) {
+            this.id = vo.getId();
+        }
+        if (vo.getDisasterCode() != null) {
+            this.disasterCode = vo.getDisasterCode();
+        }
+        if (vo.getCarrier() != null) {
+            this.carrier = vo.getCarrier();
+        }
+        if (vo.getOrigin() != null) {
+            this.origin = vo.getOrigin();
+        }
+        if (vo.getDisasterDate() != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmSS");
+            this.disasterDate = sdf.parse(vo.getDisasterDate());
+        }
+        if (vo.getCategory() != null) {
+            this.category = vo.getCategory();
+        }
+        if (vo.getLabel() != null) {
+            this.label = vo.getLabel();
+        }
     }
 }

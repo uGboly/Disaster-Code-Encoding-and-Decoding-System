@@ -1,7 +1,9 @@
 package com.bupt.disaster_encode.mapper;
 
 import com.bupt.disaster_encode.domain.Region;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface RegionMapper {
     int deleteByPrimaryKey(String id);
 
