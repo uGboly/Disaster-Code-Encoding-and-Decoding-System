@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bupt.disaster_encode.mapper.DisasterManagementMapper">
+  <resultMap id="BaseResultMap" type="com.bupt.disaster_encode.domain.DisasterManagement">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="disaster_code" jdbcType="VARCHAR" property="disasterCode" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="carrier" jdbcType="VARCHAR" property="carrier" />
+    <result column="origin" jdbcType="VARCHAR" property="origin" />
+    <result column="disaster_date" jdbcType="TIMESTAMP" property="disasterDate" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="label" jdbcType="VARCHAR" property="label" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, disaster_code, `location`, carrier, origin, disaster_date, category, `label`, 
+    `desc`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from disaster_management
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from disaster_management
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bupt.disaster_encode.domain.DisasterManagement">
+    insert into disaster_management (id, disaster_code, `location`, 
+      carrier, origin, disaster_date, 
+      category, `label`, `desc`
+      )
+    values (#{id,jdbcType=INTEGER}, #{disasterCode,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{carrier,jdbcType=VARCHAR}, #{origin,jdbcType=VARCHAR}, #{disasterDate,jdbcType=TIMESTAMP}, 
+      #{category,jdbcType=VARCHAR}, #{label,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bupt.disaster_encode.domain.DisasterManagement">
+    insert into disaster_management
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="disasterCode != null">
+        disaster_code,
+      </if>
+      <if test="location != null">
+        `location`,
+      </if>
+      <if test="carrier != null">
+        carrier,
+      </if>
+      <if test="origin != null">
+        origin,
+      </if>
+      <if test="disasterDate != null">
+        disaster_date,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="label != null">
+        `label`,
+      </if>
+      <if test="desc != null">
+        `desc`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="disasterCode != null">
+        #{disasterCode,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="carrier != null">
+        #{carrier,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null">
+        #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="disasterDate != null">
+        #{disasterDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null">
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        #{desc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bupt.disaster_encode.domain.DisasterManagement">
+    update disaster_management
+    <set>
+      <if test="disasterCode != null">
+        disaster_code = #{disasterCode,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        `location` = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="carrier != null">
+        carrier = #{carrier,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null">
+        origin = #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="disasterDate != null">
+        disaster_date = #{disasterDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="category != null">
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null">
+        `label` = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        `desc` = #{desc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bupt.disaster_encode.domain.DisasterManagement">
+    update disaster_management
+    set disaster_code = #{disasterCode,jdbcType=VARCHAR},
+      `location` = #{location,jdbcType=VARCHAR},
+      carrier = #{carrier,jdbcType=VARCHAR},
+      origin = #{origin,jdbcType=VARCHAR},
+      disaster_date = #{disasterDate,jdbcType=TIMESTAMP},
+      category = #{category,jdbcType=VARCHAR},
+      `label` = #{label,jdbcType=VARCHAR},
+      `desc` = #{desc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

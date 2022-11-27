@@ -1,0 +1,1 @@
+java -jar /Users/bytedance/Documents/BUPT/软工项目管理大作业/Disaster_Encode/src/script/mybatis-generator/mybatis-generator-core-1.3.6.jar -configfile config.xml -overwrite
