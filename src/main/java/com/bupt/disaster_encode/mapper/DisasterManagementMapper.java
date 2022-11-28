@@ -22,7 +22,7 @@ public interface DisasterManagementMapper {
 
     int insertList(List<DisasterManagement> list);
 
-    List<DisasterManagement> selectSelectiveByPage(@Param("disasterManagement") DisasterManagement disasterManagement, @Param("offset") int offset, @Param("limit") int limit);
+    List<DisasterManagement> selectSelectiveByPage(@Param("record") DisasterManagement disasterManagement, @Param("offset") int offset, @Param("limit") int limit);
 
-    Integer selectSelectiveByPageCount(DisasterManagement disasterManagement);
+    Integer selectSelectiveByPageCount(@Param("record") DisasterManagement disasterManagement);
 }

@@ -69,7 +69,7 @@ public class EncodingServiceImpl implements EncodingService {
         if (file.isFile()) {
             FileInputStream inputStream = null;
             FileOutputStream outputStream = null;
-            String filePath = "src/main/resources/files";
+            String filePath = "src/main/resources/files/" + file.getName();
             try {
                 inputStream = new FileInputStream(file);
                 outputStream = new FileOutputStream(filePath);
@@ -85,8 +85,7 @@ public class EncodingServiceImpl implements EncodingService {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            File outputFile = new File(filePath);
-            disasterManagement.setDesc(outputFile.getAbsolutePath() + file.getName());
+            disasterManagement.setDesc(filePath);
         }
     }
 

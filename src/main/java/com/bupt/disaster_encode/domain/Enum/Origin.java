@@ -19,7 +19,10 @@ public enum Origin {
     PONP(2, "泛在感知数据", "02", "舆情感知", "202"),
     PSS(2, "泛在感知数据", "03", "电力系统感知", "203"),
     TSA(2, "泛在感知数据", "04", "交通系统感知", "204"),
-    OTHER2(2, "泛在感知数据", "05", "其他", "205");
+    OTHER2(2, "泛在感知数据", "05", "其他", "205"),
+
+    OTHER3(3, "其他数据", "00", "其他", "300"),
+    ;
 
     public int LargeCategoriesCode;
     public String LargeCategoriesName;

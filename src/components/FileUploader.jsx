@@ -38,7 +38,7 @@ function FileUploader(props) {
     }
 
     function handleClick(e) {
-        axios.postForm('/info', {
+        axios.postForm('http://localhost:8080/info', {
             'file': infoFile
         })
         .then(res => console.log("success"))

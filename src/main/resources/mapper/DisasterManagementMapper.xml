@@ -27,29 +27,29 @@
     <include refid="Base_Column_List"/>
     from disaster_management
     where 1 = 1
-    <if test="disasterManagement.id != null">
-      and id = #{disasterManagement.id}
+    <if test="record.id != null">
+      and id = #{record.id}
     </if>
-    <if test="disasterManagement.disasterCode != null">
-      and disaster_code = #{disasterManagement.disasterCode}
+    <if test="record.disasterCode != null">
+      and disaster_code = #{record.disasterCode}
     </if>
-    <if test="disasterManagement.location != null">
-      and location = #{disasterManagement.location}
+    <if test="record.location != null">
+      and location = #{record.location}
     </if>
-    <if test="disasterManagement.carrier != null">
-      and carrier = #{disasterManagement.carrier}
+    <if test="record.carrier != null">
+      and carrier = #{record.carrier}
     </if>
-    <if test="disasterManagement.origin != null">
-      and origin = #{disasterManagement.origin}
+    <if test="record.origin != null">
+      and origin = #{record.origin}
     </if>
-    <if test="disasterManagement.disasterDate != null">
-      and disaster_date = #{disasterManagement.disasterDate}
+    <if test="record.disasterDate != null">
+      and disaster_date = #{record.disasterDate}
     </if>
-    <if test="disasterManagement.category != null">
-      and category = #{disasterManagement.category}
+    <if test="record.category != null">
+      and category = #{record.category}
     </if>
-    <if test="disasterManagement.label != null">
-      and label = #{disasterManagement.label}
+    <if test="record.label != null">
+      and label = #{record.label}
     </if>
     limit #{offset}, #{limit};
 
@@ -58,29 +58,29 @@
     select count(*)
     from disaster_management
     where 1 = 1
-    <if test="disasterManagement.id != null">
-      and id = #{disasterManagement.id}
+    <if test="record.id != null">
+      and id = #{record.id}
     </if>
-    <if test="disasterManagement.disasterCode != null">
-      and disaster_code = #{disasterManagement.disasterCode}
+    <if test="record.disasterCode != null">
+      and disaster_code = #{record.disasterCode}
     </if>
-    <if test="disasterManagement.location != null">
-      and location = #{disasterManagement.location}
+    <if test="record.location != null">
+      and location = #{record.location}
     </if>
-    <if test="disasterManagement.carrier != null">
-      and carrier = #{disasterManagement.carrier}
+    <if test="record.carrier != null">
+      and carrier = #{record.carrier}
     </if>
-    <if test="disasterManagement.origin != null">
-      and origin = #{disasterManagement.origin}
+    <if test="record.origin != null">
+      and origin = #{record.origin}
     </if>
-    <if test="disasterManagement.disasterDate != null">
-      and disaster_date = #{disasterManagement.disasterDate}
+    <if test="record.disasterDate != null">
+      and disaster_date = #{record.disasterDate}
     </if>
-    <if test="disasterManagement.category != null">
-      and category = #{disasterManagement.category}
+    <if test="record.category != null">
+      and category = #{record.category}
     </if>
-    <if test="disasterManagement.label != null">
-      and label = #{disasterManagement.label}
+    <if test="record.label != null">
+      and label = #{record.label}
     </if>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -159,11 +159,11 @@
     </trim>
   </insert>
   <insert id="insertList" parameterType="com.bupt.disaster_encode.domain.DisasterManagement">
-    insert into disaster_management (disaster_code, location, carrier, origin, disaster_date, category, label, desc)
+    insert into disaster_management (disaster_code, location, carrier, origin, disaster_date, category, label, `desc`)
     values
         <foreach collection="list" separator="," item="item">
           (#{item.disasterCode,jdbcType=VARCHAR}, #{item.location,jdbcType=VARCHAR},
-          #{citem.arrier,jdbcType=VARCHAR}, #{item.origin,jdbcType=VARCHAR}, #{item.disasterDate,jdbcType=TIMESTAMP},
+          #{item.carrier,jdbcType=VARCHAR}, #{item.origin,jdbcType=VARCHAR}, #{item.disasterDate,jdbcType=TIMESTAMP},
           #{item.category,jdbcType=VARCHAR}, #{item.label,jdbcType=VARCHAR}, #{item.desc,jdbcType=VARCHAR}
           )
         </foreach>
