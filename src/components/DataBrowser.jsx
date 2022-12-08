@@ -18,7 +18,7 @@ function DataBrowser(props) {
     const handleChange = (e) => {
         setQuery({
             ...query,
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         })
     }
 
@@ -29,8 +29,8 @@ function DataBrowser(props) {
         }
 
         axios.post('http://localhost:8080/data', formData)
-        .then(res => setData(res.data))
-        .catch(console.log);
+            .then(res => setData(res.data))
+            .catch(console.log);
     }
 
 
@@ -73,72 +73,74 @@ function DataBrowser(props) {
         },
     ];
 
-    // const rows =[
-    //     {
-    //         "id":"1",
-    //         "disasterCode":"1",
-    //         "location":"1",
-    //         "carrier":"1",
-    //         "origin":"1",
-    //         "disasterDate":"1",
-    //         "category":"1",
-    //         "label":"1"
-    //     },
-    //     {
-    //         "id":"1",
-    //         "disasterCode":"1",
-    //         "location":"1",
-    //         "carrier":"1",
-    //         "origin":"1",
-    //         "disasterDate":"1",
-    //         "category":"1",
-    //         "label":"1"
-    //     },
-    //     {
-    //         "id":"1",
-    //         "disasterCode":"1",
-    //         "location":"1",
-    //         "carrier":"1",
-    //         "origin":"1",
-    //         "disasterDate":"1",
-    //         "category":"1",
-    //         "label":"1"
-    //     }
-    // ];
+    const rows = [
+        {
+            "id": "1",
+            "disasterCode": "1",
+            "location": "1",
+            "carrier": "1",
+            "origin": "1",
+            "disasterDate": "1",
+            "category": "1",
+            "label": "1"
+        },
+        {
+            "id": "1",
+            "disasterCode": "1",
+            "location": "1",
+            "carrier": "1",
+            "origin": "1",
+            "disasterDate": "1",
+            "category": "1",
+            "label": "1"
+        },
+        {
+            "id": "1",
+            "disasterCode": "1",
+            "location": "1",
+            "carrier": "1",
+            "origin": "1",
+            "disasterDate": "1",
+            "category": "1",
+            "label": "1"
+        }
+    ];
 
 
     return (
         <Grid container spacing={3}>
-            <Box component="form" sx={{'& .MuiTextField-root': { m: 2 }}} >
+            <Box component="form" sx={{ '& .MuiTextField-root': { m: 2 } }} >
                 <TextField name="id" id="id" label="灾情信息ID" value={query.id} onChange={handleChange} variant="outlined" />
                 <TextField name="disasterCode" id="disasterCode" label="灾情码" value={query.disasterCode} onChange={handleChange} variant="outlined" />
                 <TextField name="location" id="location" label="灾情地区" value={query.location} onChange={handleChange} variant="outlined" />
                 <TextField name="carrier" id="carrier" select label="载体形式" value={query.carrier} onChange={handleChange} variant="outlined" helperText="请选择载体形式">
-                    <MenuItem key="1" value ="文字">文字</MenuItem>
-                    <MenuItem key="2" value ="图像">图像</MenuItem>
-                    <MenuItem key="3" value ="音频">音频</MenuItem>
-                    <MenuItem key="4" value ="视频">视频</MenuItem>
-                    <MenuItem key="5" value ="其他">其他</MenuItem>
+                    <MenuItem key="1" value="文字">文字</MenuItem>
+                    <MenuItem key="2" value="图像">图像</MenuItem>
+                    <MenuItem key="3" value="音频">音频</MenuItem>
+                    <MenuItem key="4" value="视频">视频</MenuItem>
+                    <MenuItem key="5" value="其他">其他</MenuItem>
                 </TextField>
                 <TextField name="origin" id="origin" label="来源形式" value={query.origin} onChange={handleChange} variant="outlined" />
-                <TextField name="disasterDate" id="disasterDate" value={query.disasterDate} inputProps={{type:"date"}} onChange={handleChange} helperText="请选择灾情时间" />
+                <TextField name="disasterDate" id="disasterDate" value={query.disasterDate} inputProps={{ type: "date" }} onChange={handleChange} helperText="请选择灾情时间" />
                 <TextField name="category" id="category" label="信息种类" value={query.category} onChange={handleChange} variant="outlined" />
                 <TextField name="label" id="label" label="灾情指标" value={query.label} onChange={handleChange} variant="outlined" />
             </Box>
             <Grid item xs={12}>
-                <Button sx={{mb:6}} variant="contained" onClick={handleClick} >查询数据</Button>
+                <Button sx={{ mb: 6 }} variant="contained" onClick={handleClick} >查询数据</Button>
             </Grid>
-            <Divider/>
+            <Divider />
             <Grid item xs={12}>
-                <Box sx={{height:500,width:'100%'}}>
-                    <DataGrid
-                        rows={data.result}
-                        columns={columns}
-                        pageSize={query.pageSize}
-                        disableSelectionOnClick
-                        experimentalFeatures={{ newEditingApi: true }}
-                    />
-                </Box>
+                {data !== undefined ? 
+                    <Box sx={{ height: 500, width: '100%' }}>
+                        <DataGrid
+                            rows={rows}
+                            columns={columns}
+                            pageSize={query.pageSize}
+                            disableSelectionOnClick
+                            experimentalFeatures={{ newEditingApi: true }}
+                        />
+                    </Box> : ''}
+                
             </Grid>
         </Grid>
     );
