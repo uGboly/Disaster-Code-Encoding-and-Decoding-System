@@ -30,7 +30,7 @@ function App() {
       </AppBar>
 
       <Grid container spacing={4}>
-            <Grid item xs={3}>
+            <Grid item xs={2}>
               <List>
                 <ListItem sx={{mt:3}}>
                   <ListItemButton>
@@ -61,7 +61,7 @@ function App() {
                 <Divider/>
               </List>
             </Grid>
-            <Grid item xs={8}> 
+            <Grid item xs={10}> 
             <Switch>
               <Paper className="paper" sx={{m:6, p:6}} elevation={3}>
                 <Route path="/" exact component={FileUploader}/>
