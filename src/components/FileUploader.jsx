@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import  './FileUploader.css';
-import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Input from '@mui/material/Input';
@@ -46,7 +45,7 @@ function FileUploader(props) {
     }
 
     return (
-        <Paper sx={{m:6, p:6, height:"70vh"}} elevation={3}>
+        <div>
             <Box component="form" >
                 <InputLabel htmlFor="file-selector">选择震情描述文件(csv或多媒体文件)</InputLabel>
                 <Input id="file-selector" inputProps={{type:"file"}} onChange= {handleChange}/>
@@ -67,7 +66,7 @@ function FileUploader(props) {
             </Box>
 
             <Button sx={{mb:6}} variant="contained" onClick={handleClick} >上传文件</Button>
-        </Paper>
+        </div>
 
 
     );
