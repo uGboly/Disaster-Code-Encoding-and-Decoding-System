@@ -12,6 +12,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import TableViewIcon from '@mui/icons-material/TableView';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import Visualizer  from './components/Visualizer';
 import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import {
@@ -59,6 +61,20 @@ function App() {
                   
                 </ListItem>
                 <Divider/>
+                <ListItem>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <BarChartIcon/>
+                    </ListItemIcon>
+                    <Link component={RouterLink} to="/visualizer" underline="none">
+                      <ListItemText>
+                          数据可视化
+                      </ListItemText>
+                    </Link>
+                  </ListItemButton>
+                  
+                </ListItem>
+                <Divider/>
               </List>
             </Grid>
             <Grid item xs={10}> 
@@ -66,6 +82,7 @@ function App() {
               <Paper className="paper" sx={{m:6, p:6}} elevation={3}>
                 <Route path="/" exact component={FileUploader}/>
                 <Route path="/data" component={DataBrowser}/>
+                <Route path="/visualizer" component={Visualizer}/>
               </Paper>
             </Switch>
             </Grid>
