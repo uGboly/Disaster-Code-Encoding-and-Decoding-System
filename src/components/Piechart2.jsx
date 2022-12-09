@@ -11,7 +11,7 @@ function ramdomColor() {
     return `rgba(${helper()}, ${helper()}, ${helper()}, 0.2)`;
 }
 
-function Piechart(props) {
+function Piechart2(props) {
     const [data, setData] = useState();
 
     useEffect(() => {
@@ -22,31 +22,44 @@ function Piechart(props) {
             })
             .then(
                 res=>{
-                    let map = new Map();
+                    let map = new Array(5).fill(0);
                     res.data.result.data.forEach(e => {
-                        if (map.has(e.category)) {
-                            map.set(e.category, map.get(e.category) + 1);
-                        } else {
-                            map.set(e.category, 1);
+                        switch (e.carrier) {
+                            case "文字" :
+                                map[0]++;
+                                break;
+                            case "图像" :
+                                map[1]++;
+                                break;
+                            case "音频" :
+                                map[2]++;
+                                break;
+                            case "视频" :
+                                map[3]++;
+                                break;
+                            case "其他" :
+                                map[4]++;
+                                break;
                         }
                     });
 
-                    map = Array.from(map.entries()).filter((e, index)=> index <= 3);
                     console.log(map);
 
                     setData ( {
-                        labels: map.map(e => e[0]),
+                        labels: ["文字","图像","音频","视频","其他"],
                         datasets: [
                         {
                             label: '灾情数量',
-                            data: map.map(e => e[1]),
+                            data: map,
                             backgroundColor: [
+                                ramdomColor(),
                                 ramdomColor(),
                                 ramdomColor(),
                                 ramdomColor(),
                                 ramdomColor(),
                             ],
                             borderColor: [
+                                ramdomColor(),
                                 ramdomColor(),
                                 ramdomColor(),
                                 ramdomColor(),
@@ -70,4 +83,4 @@ function Piechart(props) {
     );
 }
 
-export default Piechart;
+export default Piechart2;

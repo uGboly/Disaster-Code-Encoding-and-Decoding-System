@@ -32,7 +32,7 @@ export const options = {
         },
     },
 };
-  
+
 function Linechart(props) {
     const [data, setData] = useState();
 
@@ -78,7 +78,7 @@ function Linechart(props) {
 
 
     return(
-        <Grid item xs={6}>
+        <Grid item xs={4}>
             {data ? <Line options={options} data={data} /> : ""}
         </Grid>
     );
